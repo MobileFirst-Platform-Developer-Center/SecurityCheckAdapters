@@ -17,3 +17,6 @@ Notes as I go along.
 - Now in my challenge handler I am automatically sending submitChallengeAnswer with the expected credentials.
 - Works, I get the resources.
 - Note: Now with session independence, restarting the application does not log you out. So I won't get the challenge again. The property `successExpirationSec` seems to affect how long my session lasts.
+- Now I am trying to send it bad credentials. I keep getting the challenge back. Forever.
+- Setting a "max attempts" seems to have no effect. I opened 99004
+- Ok, we found the issue: `failureExpirationSec` defaults to 0. max attempts only makes sense if you have that value as well.

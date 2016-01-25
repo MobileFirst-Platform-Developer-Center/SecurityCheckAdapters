@@ -14,8 +14,7 @@
 	<description>SecuritySampleWithAttempts</description>
 
 	<securityCheckDefinition name="SecuritySampleWithAttempts" class="com.sample.SecuritySampleWithAttempts">
-		<property name="successExpirationSec" defaultValue="60"/>
-		<!--<property name="failureExpirationSec" defaultValue="60"/>-->
-		<!--<property name="maxAttempts" defaultValue="3"/>-->
+		<property name="failureExpirationSec" defaultValue="60"/>
+		<property name="maxAttempts" defaultValue="3"/>
 	</securityCheckDefinition>
 </mfp:adapter>

@@ -6,7 +6,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sample</groupId>
 	<artifactId>SecuritySampleWithAttempts</artifactId>
@@ -26,8 +26,8 @@
 	<properties>
 		<!-- parameters for deploy mfpf adapter -->
 		<mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
-		<mfpfUser>demo</mfpfUser>
-		<mfpfPassword>demo</mfpfPassword>
+		<mfpfUser>admin</mfpfUser>
+		<mfpfPassword>admin</mfpfPassword>
 	</properties>
 
 	<build>

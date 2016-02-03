@@ -1,9 +1,12 @@
 package com.sample;
 
+import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
 import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithAttempts;
+import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithAttemptsConfig;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by nathanh on 03/02/2016.
@@ -12,7 +15,15 @@ public class PinCodeAttempts extends SecurityCheckWithAttempts {
 
     private transient String errorMsg = null;
     public static final String PINCODE_FIELD = "pin";
-    public static final String VALID_PINCODE = "1234";
+
+    @Override
+    public SecurityCheckConfiguration createConfiguration(Properties properties) {
+        return new PinCodeConfig(properties);
+    }
+    @Override
+    protected PinCodeConfig getConfig() {
+        return (PinCodeConfig) super.getConfig();
+    }
 
     /**
      * Validate the credentials
@@ -26,11 +37,11 @@ public class PinCodeAttempts extends SecurityCheckWithAttempts {
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
             //For our example, credentials are valid if username == password
-            if(pinCode.equals(VALID_PINCODE)){
+            if(pinCode.equals(getConfig().pinCode)){
                 return true;
             }
             else {
-                errorMsg = "Pin code is not valid. Hint: " + VALID_PINCODE;
+                errorMsg = "Pin code is not valid. Hint: " + getConfig().pinCode;
             }
 
         }

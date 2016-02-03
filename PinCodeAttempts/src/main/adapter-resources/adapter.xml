@@ -16,5 +16,6 @@
 	<securityCheckDefinition name="PinCodeAttempts" class="com.sample.PinCodeAttempts">
 		<property name="failureExpirationSec" defaultValue="60"/>
 		<property name="maxAttempts" defaultValue="3"/>
+		<property name="successExpirationSec" defaultValue="60"/>
 	</securityCheckDefinition>
 </mfp:adapter>

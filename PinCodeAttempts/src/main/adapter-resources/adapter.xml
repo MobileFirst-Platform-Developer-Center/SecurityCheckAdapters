@@ -13,5 +13,8 @@
 	<displayName>PinCodeAttempts</displayName>
 	<description>PinCodeAttempts</description>
 
-	<JAXRSApplicationClass>com.sample.PinCodeAttemptsApplication</JAXRSApplicationClass>
+	<securityCheckDefinition name="PinCodeAttempts" class="com.sample.PinCodeAttempts">
+		<property name="failureExpirationSec" defaultValue="60"/>
+		<property name="maxAttempts" defaultValue="3"/>
+	</securityCheckDefinition>
 </mfp:adapter>

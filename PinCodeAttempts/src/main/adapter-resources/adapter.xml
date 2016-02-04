@@ -14,9 +14,9 @@
 	<description>PinCodeAttempts</description>
 
 	<securityCheckDefinition name="PinCodeAttempts" class="com.sample.PinCodeAttempts">
-		<property name="failureExpirationSec" defaultValue="60"/>
-		<property name="maxAttempts" defaultValue="3"/>
-		<property name="successExpirationSec" defaultValue="60"/>
-		<property name="pinCode" defaultValue="1234"/>
+		<property name="pinCode" defaultValue="1234" displayName="The valid PIN code"/>
+		<property name="maxAttempts" defaultValue="3" displayName="How many attempts are allowed"/>
+		<property name="failureExpirationSec" defaultValue="60" displayName="How long before the client can try again (seconds)"/>
+		<property name="successExpirationSec" defaultValue="60" displayName="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 </mfp:adapter>

@@ -33,7 +33,7 @@ public class PinCodeAttempts extends SecurityCheckWithAttempts {
      */
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
-        if(credentials.containsKey(PINCODE_FIELD)){
+        if(credentials!=null && credentials.containsKey(PINCODE_FIELD)){
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
             //For our example, credentials are valid if username == password

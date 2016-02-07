@@ -36,7 +36,6 @@ public class PinCodeAttempts extends SecurityCheckWithAttempts {
         if(credentials!=null && credentials.containsKey(PINCODE_FIELD)){
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
-            //For our example, credentials are valid if username == password
             if(pinCode.equals(getConfig().pinCode)){
                 return true;
             }

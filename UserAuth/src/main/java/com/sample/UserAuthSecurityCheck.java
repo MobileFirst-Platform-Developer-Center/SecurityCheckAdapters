@@ -12,6 +12,7 @@ import java.util.Map;
 public class UserAuthSecurityCheck extends SecurityCheckWithUserAuthentication {
     private String userId, displayName;
     private String errorMsg;
+    private boolean rememberMe = false;
 
     @Override
     protected AuthenticatedUser createUser() {
@@ -26,6 +27,12 @@ public class UserAuthSecurityCheck extends SecurityCheckWithUserAuthentication {
             if(username.equals(password)) {
                 userId = username;
                 displayName = username;
+
+                //Optional RememberMe
+                if(credentials.containsKey("rememberMe") ){
+                    rememberMe = Boolean.valueOf(credentials.get("rememberMe").toString());
+                }
+
                 return true;
             }
             else {
@@ -44,5 +51,10 @@ public class UserAuthSecurityCheck extends SecurityCheckWithUserAuthentication {
         challenge.put("errorMsg",errorMsg);
         challenge.put("remainingAttempts",remainingAttempts);
         return challenge;
+    }
+
+    @Override
+    protected boolean rememberCreatedUser() {
+        return rememberMe;
     }
 }

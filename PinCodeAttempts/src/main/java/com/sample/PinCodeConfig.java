@@ -1,13 +1,13 @@
 package com.sample;
 
-import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithAttemptsConfig;
+import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheckConfig;
 
 import java.util.Properties;
 
 /**
  * Created by nathanh on 03/02/2016.
  */
-public class PinCodeConfig extends SecurityCheckWithAttemptsConfig {
+public class PinCodeConfig extends CredentialsValidationSecurityCheckConfig {
 
     public String pinCode;
 

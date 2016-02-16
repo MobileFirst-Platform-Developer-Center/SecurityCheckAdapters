@@ -6,7 +6,7 @@
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
 <mfp:adapter name="PinCodeAttempts"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:mfp="http://www.ibm.com/mfp/integration"
 	xmlns:http="http://www.ibm.com/mfp/integration/http">
 
@@ -16,7 +16,7 @@
 	<securityCheckDefinition name="PinCodeAttempts" class="com.sample.PinCodeAttempts">
 		<property name="pinCode" defaultValue="1234" displayName="The valid PIN code"/>
 		<property name="maxAttempts" defaultValue="3" displayName="How many attempts are allowed"/>
-		<property name="failureExpirationSec" defaultValue="60" displayName="How long before the client can try to login again (seconds)"/>
-		<property name="successExpirationSec" defaultValue="60" displayName="How long is a successful state valid for (seconds)"/>
+		<property name="failureStateExpirationSec" defaultValue="60" displayName="How long before the client can try again (seconds)"/>
+		<property name="successStateExpirationSec" defaultValue="60" displayName="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 </mfp:adapter>

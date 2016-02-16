@@ -10,6 +10,7 @@
 	<modules>
 		<module>PinCodeAttempts</module>
 		<module>ResourceAdapter</module>
+		<module>UserAuth</module>
   </modules>
 
 	<properties>

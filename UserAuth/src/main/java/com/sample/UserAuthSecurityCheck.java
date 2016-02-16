@@ -1,7 +1,7 @@
 package com.sample;
 
+import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
-import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithUserAuthentication;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by shmulikb on 10/02/2016.
  */
-public class UserAuthSecurityCheck extends SecurityCheckWithUserAuthentication {
+public class UserAuthSecurityCheck extends UserAuthenticationSecurityCheck {
     private String userId, displayName;
     private String errorMsg;
     private boolean rememberMe = false;

@@ -1,8 +1,7 @@
 package com.sample;
 
+import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
-import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithAttempts;
-import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithAttemptsConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,7 @@ import java.util.Properties;
 /**
  * Created by nathanh on 03/02/2016.
  */
-public class PinCodeAttempts extends SecurityCheckWithAttempts {
+public class PinCodeAttempts extends CredentialsValidationSecurityCheck {
 
     private transient String errorMsg = null;
     public static final String PINCODE_FIELD = "pin";

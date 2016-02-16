@@ -21,6 +21,11 @@
 			<scope>provided</scope>
 			<version>8.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>com.ibm.mfp</groupId>
+			<artifactId>mfp-security-checks-base</artifactId>
+			<version>8.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<properties>

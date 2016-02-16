@@ -15,7 +15,7 @@
 
 	<securityCheckDefinition name="UserAuthSecurityCheck" class="com.sample.UserAuthSecurityCheck">
 		<property name="maxAttempts" defaultValue="3" displayName="How many attempts are allowed"/>
-		<property name="failureExpirationSec" defaultValue="10" displayName="How long before the client can try again (seconds)"/>
+		<property name="failureExpirationSec" defaultValue="10" displayName="How long before the client can try to login again (seconds)"/>
 		<property name="successExpirationSec" defaultValue="60" displayName="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 

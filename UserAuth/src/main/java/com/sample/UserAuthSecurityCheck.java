@@ -6,9 +6,6 @@ import com.ibm.mfp.server.security.external.checks.impl.SecurityCheckWithUserAut
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by shmulikb on 10/02/2016.
- */
 public class UserAuthSecurityCheck extends SecurityCheckWithUserAuthentication {
     private String userId, displayName;
     private String errorMsg;
@@ -41,8 +38,8 @@ public class UserAuthSecurityCheck extends SecurityCheckWithUserAuthentication {
     @Override
     protected Map<String, Object> createChallenge() {
         HashMap challenge = new HashMap();
-        challenge.put("errorMsg",errorMsg);
-        challenge.put("remainingAttempts",remainingAttempts);
+        challenge.put("errorMsg", errorMsg);
+        challenge.put("remainingAttempts", remainingAttempts);
         return challenge;
     }
 }

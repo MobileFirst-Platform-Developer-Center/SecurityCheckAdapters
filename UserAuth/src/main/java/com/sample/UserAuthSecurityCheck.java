@@ -24,7 +24,7 @@ public class UserAuthSecurityCheck extends UserAuthenticationSecurityCheck {
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();
-            if(username.equals(password)) {
+            if(!username.isEmpty() && !password.isEmpty() && username.equals(password)) {
                 userId = username;
                 displayName = username;
 

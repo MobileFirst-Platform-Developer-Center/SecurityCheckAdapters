@@ -3,14 +3,14 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sample</groupId>
-	<artifactId>AdapterMashup</artifactId>
+	<artifactId>SecurityCheckAdapters</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
 		<module>PinCodeAttempts</module>
 		<module>ResourceAdapter</module>
-		<module>UserAuth</module>
+    <module>UserLogin</module>
   </modules>
 
 	<properties>

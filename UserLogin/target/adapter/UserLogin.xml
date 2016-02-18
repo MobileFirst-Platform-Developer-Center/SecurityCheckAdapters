@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+--><mfp:adapter xmlns:mfp="http://www.ibm.com/mfp/integration" xmlns:http="http://www.ibm.com/mfp/integration/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="UserLogin">
+
+	<displayName>UserLogin</displayName>
+	<description>UserLogin</description>
+
+	<securityCheckDefinition class="com.sample.UserLogin" name="UserLogin">
+		<property defaultValue="3" displayName="How many attempts are allowed" name="maxAttempts"/>
+		<property defaultValue="10" displayName="How long before the client can try again (seconds)" name="failureStateExpirationSec"/>
+		<property defaultValue="60" displayName="How long is a successful state valid for (seconds)" name="successStateExpirationSec"/>
+		<property defaultValue="120" displayName="How long is the user remembered when using RememberMe (seconds)" name="rememberMeDurationSec"/>
+	</securityCheckDefinition>
+
+</mfp:adapter>

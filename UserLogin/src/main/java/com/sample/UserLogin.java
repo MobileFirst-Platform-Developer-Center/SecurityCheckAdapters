@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by shmulikb on 10/02/2016.
+ * Created by nathanh on 18/02/2016.
  */
-public class UserAuthSecurityCheck extends UserAuthenticationSecurityCheck {
+public class UserLogin extends UserAuthenticationSecurityCheck {
     private String userId, displayName;
     private String errorMsg;
     private boolean rememberMe = false;

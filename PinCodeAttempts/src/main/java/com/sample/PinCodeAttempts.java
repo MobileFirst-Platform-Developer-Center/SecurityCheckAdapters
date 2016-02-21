@@ -61,7 +61,7 @@ public class PinCodeAttempts extends CredentialsValidationSecurityCheck {
     protected Map<String, Object> createChallenge() {
         HashMap challenge = new HashMap();
         challenge.put("errorMsg",errorMsg);
-        challenge.put("remainingAttempts",remainingAttempts);
+        challenge.put("remainingAttempts",getRemainingAttempts());
         return challenge;
     }
 }

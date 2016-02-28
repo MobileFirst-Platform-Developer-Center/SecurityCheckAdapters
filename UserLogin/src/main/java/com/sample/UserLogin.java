@@ -21,9 +21,6 @@ import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by nathanh on 18/02/2016.
- */
 public class UserLogin extends UserAuthenticationSecurityCheck {
     private String userId, displayName;
     private String errorMsg;

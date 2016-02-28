@@ -48,6 +48,7 @@ public class PinCodeAttempts extends CredentialsValidationSecurityCheck {
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
             if(pinCode.equals(getConfig().pinCode)){
+                errorMsg = null;
                 return true;
             }
             else {

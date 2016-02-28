@@ -44,7 +44,7 @@ public class UserLogin extends UserAuthenticationSecurityCheck {
                 if(credentials.containsKey("rememberMe") ){
                     rememberMe = Boolean.valueOf(credentials.get("rememberMe").toString());
                 }
-
+                errorMsg = null;
                 return true;
             }
             else {

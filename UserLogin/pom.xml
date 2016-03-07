@@ -43,6 +43,7 @@ limitations under the License.
 		<mfpfUser>admin</mfpfUser>
 		<mfpfPassword>admin</mfpfPassword>
 		<mfpfRuntime>mfp</mfpfRuntime>
+		<mfpfRuntime>mfp</mfpfRuntime>
 	</properties>
 
 	<build>

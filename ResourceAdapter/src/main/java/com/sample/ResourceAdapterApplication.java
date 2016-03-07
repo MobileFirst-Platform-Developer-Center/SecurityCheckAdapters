@@ -15,11 +15,12 @@
 */
 package com.sample;
 
+import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
+
 import java.util.logging.Logger;
-import javax.ws.rs.core.Application;
 import java.util.*;
 
-public class ResourceAdapterApplication extends Application{
+public class ResourceAdapterApplication extends MFPJAXRSApplication{
 
 	static Logger logger = Logger.getLogger(ResourceAdapterApplication.class.getName());
 

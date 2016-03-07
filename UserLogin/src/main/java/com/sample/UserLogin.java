@@ -59,7 +59,7 @@ public class UserLogin extends UserAuthenticationSecurityCheck {
 
     @Override
     protected Map<String, Object> createChallenge() {
-        HashMap challenge = new HashMap();
+        Map challenge = new HashMap();
         challenge.put("errorMsg",errorMsg);
         challenge.put("remainingAttempts",getRemainingAttempts());
         return challenge;

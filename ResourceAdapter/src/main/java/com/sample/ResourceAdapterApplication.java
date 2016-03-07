@@ -18,7 +18,6 @@ package com.sample;
 import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 
 import java.util.logging.Logger;
-import java.util.*;
 
 public class ResourceAdapterApplication extends MFPJAXRSApplication{
 
@@ -40,10 +39,4 @@ public class ResourceAdapterApplication extends MFPJAXRSApplication{
 		//It is also possible to override "getPackagesToScan" method in order to return more than one package for scanning
 		return getClass().getPackage().getName();
 	}
-
-		public Set<Class<?>> getClasses() {
-			Set<Class<?>> classes = new HashSet<Class<?>>();
-			classes.add(ResourceAdapterResource.class);
-			return classes;
-		}
 }

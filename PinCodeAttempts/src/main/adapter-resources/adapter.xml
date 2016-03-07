@@ -23,9 +23,9 @@ limitations under the License.
 	<description>Protect resources using a predefined PIN code, with limited attempts.</description>
 
 	<securityCheckDefinition name="PinCodeAttempts" class="com.sample.PinCodeAttempts">
-		<property name="pinCode" defaultValue="1234" description="The valid PIN code"/>
-		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed"/>
-		<property name="blockedStateExpirationSec" defaultValue="60" description="How long before the client can try again (seconds)"/>
-		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)"/>
+		<property name="pinCode" defaultValue="1234" description="The valid PIN code" type="integer"/>
+		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed" type="integer"/>
+		<property name="blockedStateExpirationSec" defaultValue="60" description="How long before the client can try again (seconds)" type="integer"/>
+		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
 	</securityCheckDefinition>
 </mfp:adapter>

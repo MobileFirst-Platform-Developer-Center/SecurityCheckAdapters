@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2013. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="StepUp"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>StepUp</displayName>
+	<description>StepUp</description>
+
+	<JAXRSApplicationClass>com.sample.StepUpApplication</JAXRSApplicationClass>
+
+	<securityCheckDefinition name="StepUpUserLogin" class="com.sample.StepUpUserLogin">
+		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed" type="integer"/>
+		<property name="blockedStateExpirationSec" defaultValue="10" description="How long before the client can try again (seconds)" type="integer"/>
+		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
+	</securityCheckDefinition>
+
+	<securityCheckDefinition name="StepUpPinCode" class="com.sample.StepUpPinCode">
+		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed" type="integer"/>
+		<property name="blockedStateExpirationSec" defaultValue="30" description="How long before the client can try again (seconds)" type="integer"/>
+		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
+	</securityCheckDefinition>
+
+</mfp:adapter>

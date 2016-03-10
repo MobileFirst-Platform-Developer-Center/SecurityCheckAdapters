@@ -34,5 +34,12 @@ public class ResourceAdapterResource {
 		return "19938.80";
 	}
 
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/transfer")
+	@OAuthSecurity(scope="actionRestricted") //This method is protected. Each application can define what "accessRestricted" means.
+	public boolean transfer(){
+		return true;
+	}
 
 }

@@ -15,8 +15,52 @@
 */
 package com.sample;
 
-/**
- * Created by shmulikb on 10/03/2016.
- */
-public class StepUpUserLogin {
+import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheck;
+import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
+
+    private String userId, displayName, pincode;
+    private String errorMsg;
+    private static UserManager userManager = new UserManager();
+
+    @Override
+    protected AuthenticatedUser createUser() {
+        return new AuthenticatedUser(userId, displayName, this.getName());
+    }
+
+    @Override
+    protected boolean validateCredentials(Map<String, Object> credentials) {
+        if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
+            String username = credentials.get("username").toString();
+            String password = credentials.get("password").toString();
+
+            if(userManager.getUser(username) != null){
+                if(userManager.getUser(username).getPassword().equals(password)){
+                    userId = username;
+                    displayName = username;
+                    pincode = userManager.getUser(username).getPincode();
+                    errorMsg = null;
+                    return true;
+                }
+                else {
+                    errorMsg = "Wrong Credentials";
+                }
+            }
+        }
+        else{
+            errorMsg = "Credentials not set properly";
+        }
+        return false;
+    }
+
+    @Override
+    protected Map<String, Object> createChallenge() {
+        Map challenge = new HashMap();
+        challenge.put("errorMsg",errorMsg);
+        return challenge;
+    }
 }

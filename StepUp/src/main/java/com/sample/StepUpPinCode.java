@@ -15,8 +15,24 @@
 */
 package com.sample;
 
-/**
- * Created by shmulikb on 10/03/2016.
- */
-public class StepUpPinCode {
+import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class StepUpPinCode extends CredentialsValidationSecurityCheck {
+
+    private transient String errorMsg = null;
+
+    @Override
+    protected boolean validateCredentials(Map<String, Object> credentials) {
+        return false;
+    }
+
+    @Override
+    protected Map<String, Object> createChallenge() {
+        Map challenge = new HashMap();
+        challenge.put("errorMsg",errorMsg);
+        return challenge;
+    }
 }

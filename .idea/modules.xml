@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PinCodeAttempts/PinCodeAttempts.iml" filepath="$PROJECT_DIR$/PinCodeAttempts/PinCodeAttempts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ResourceAdapter/ResourceAdapter.iml" filepath="$PROJECT_DIR$/ResourceAdapter/ResourceAdapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SecurityCheckAdapters.iml" filepath="$PROJECT_DIR$/SecurityCheckAdapters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StepUp/StepUp.iml" filepath="$PROJECT_DIR$/StepUp/StepUp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UserLogin/UserLogin.iml" filepath="$PROJECT_DIR$/UserLogin/UserLogin.iml" />
+    </modules>
+  </component>
+</project>

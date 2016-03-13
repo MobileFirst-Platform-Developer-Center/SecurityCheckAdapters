@@ -25,14 +25,10 @@ limitations under the License.
 	<JAXRSApplicationClass>com.sample.StepUpApplication</JAXRSApplicationClass>
 
 	<securityCheckDefinition name="StepUpUserLogin" class="com.sample.StepUpUserLogin">
-		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed" type="integer"/>
-		<property name="blockedStateExpirationSec" defaultValue="10" description="How long before the client can try again (seconds)" type="integer"/>
 		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
 	</securityCheckDefinition>
 
 	<securityCheckDefinition name="StepUpPinCode" class="com.sample.StepUpPinCode">
-		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed" type="integer"/>
-		<property name="blockedStateExpirationSec" defaultValue="30" description="How long before the client can try again (seconds)" type="integer"/>
 		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
 	</securityCheckDefinition>
 

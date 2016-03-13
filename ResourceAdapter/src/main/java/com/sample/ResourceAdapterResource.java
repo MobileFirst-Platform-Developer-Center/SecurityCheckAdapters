@@ -35,7 +35,7 @@ public class ResourceAdapterResource {
 
 	@POST
 	@Path("/transfer")
-	@OAuthSecurity(scope="transferPrivilege") //This method is protected. Each application can define what "accessRestricted" means.
+	@OAuthSecurity(scope="transferPrivilege") //This method is protected. Each application can define what "transferPrivilege" means.
 	public Response transfer(@FormParam("amount") float amount){
 		return Response.ok().build();
 	}

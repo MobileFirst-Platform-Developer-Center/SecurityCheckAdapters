@@ -8,9 +8,10 @@ public class UserManager {
 
     public UserManager(){
         users = new HashMap();
-        users.put("aaa", new User("aaa", "aaa aaa", "abcd", "1234"));
-        users.put("bbb", new User("bbb", "bbb bbb", "bcde", "2345"));
-        users.put("ccc", new User("ccc", "ccc ccc", "cdef", "1234"));
+        users.put("John", new User("John", "John Doe", "john123", "1234"));
+        users.put("Tommy", new User("Tommy", "Tommy Atkins", "tommy234", "2345"));
+        users.put("Fred", new User("Fred", "Fred Bloggs", "fred123", "3456"));
+        users.put("Ola", new User("Ola", "Ola Nordmann", "ola123", "4567"));
     }
 
     public User getUser(String username){

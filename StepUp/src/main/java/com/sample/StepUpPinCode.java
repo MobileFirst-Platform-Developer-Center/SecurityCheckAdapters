@@ -16,9 +16,11 @@
 package com.sample;
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
+import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheckConfig;
 import com.ibm.mfp.server.registration.external.model.ClientData;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
+import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckReference;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 public class StepUpPinCode extends CredentialsValidationSecurityCheck {
@@ -34,14 +37,6 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     @SecurityCheckReference
     private transient StepUpUserLogin userLogin;
-
-
-
-    @Context
-    AdapterSecurityContext adapterSecurityContext;
-
-    private ClientData clientData = adapterSecurityContext.getClientRegistrationData();
-    private PersistentAttributes attributes = clientData.getProtectedAttributes();
 
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
@@ -52,6 +47,8 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
+        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
+
         if(credentials!=null && credentials.containsKey("pinCode")){
             String pinCode = credentials.get("pinCode").toString();
 
@@ -69,4 +66,5 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
         challenge.put("errorMsg",errorMsg);
         return challenge;
     }
+
 }

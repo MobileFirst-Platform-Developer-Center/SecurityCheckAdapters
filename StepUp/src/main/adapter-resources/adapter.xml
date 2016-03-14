@@ -22,14 +22,12 @@ limitations under the License.
 	<displayName>StepUp</displayName>
 	<description>StepUp</description>
 
-	<JAXRSApplicationClass>com.sample.StepUpApplication</JAXRSApplicationClass>
-
 	<securityCheckDefinition name="StepUpUserLogin" class="com.sample.StepUpUserLogin">
-		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
+		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 
 	<securityCheckDefinition name="StepUpPinCode" class="com.sample.StepUpPinCode">
-		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
+		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 
 </mfp:adapter>

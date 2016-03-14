@@ -31,12 +31,6 @@ public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
     private String errorMsg;
     private static UserManager userManager = new UserManager();
 
-    @Context
-    AdapterSecurityContext adapterSecurityContext;
-
-    private ClientData clientData = adapterSecurityContext.getClientRegistrationData();
-    private PersistentAttributes attributes = clientData.getProtectedAttributes();
-
     @Override
     protected AuthenticatedUser createUser() {
         return new AuthenticatedUser(userId, displayName, this.getName());
@@ -44,6 +38,7 @@ public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
 
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
+        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();

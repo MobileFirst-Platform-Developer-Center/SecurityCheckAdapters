@@ -49,7 +49,7 @@ public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
                     userId = username;
                     displayName = user.getDisplayName();
                     pinCode = user.getPincode();
-                    attributes.put("pinCode", pinCode);
+                    attributes.put(StepUpPinCode.PINCODE_FIELD, pinCode);
                     errorMsg = null;
                     return true;
                 }

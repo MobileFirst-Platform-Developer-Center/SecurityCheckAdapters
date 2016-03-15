@@ -34,6 +34,7 @@ import java.util.Set;
 public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     private transient String errorMsg = null;
+    public static final String PINCODE_FIELD = "pin";
 
     @SecurityCheckReference
     private transient StepUpUserLogin userLogin;
@@ -49,12 +50,15 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
     protected boolean validateCredentials(Map<String, Object> credentials) {
         PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
 
-        if(credentials!=null && credentials.containsKey("pinCode")){
-            String pinCode = credentials.get("pinCode").toString();
+        if(credentials!=null && credentials.containsKey(PINCODE_FIELD)){
+            String pinCode = credentials.get(PINCODE_FIELD).toString();
 
-            if(pinCode.equals(attributes.get("pinCode"))){
+            if(pinCode.equals(attributes.get(PINCODE_FIELD))){
                 errorMsg = null;
                 return true;
+            }
+            else{
+                errorMsg = "Wrong credentials. Hint: " + attributes.get(PINCODE_FIELD);
             }
         }
         return false;

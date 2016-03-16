@@ -32,8 +32,8 @@ public class PinCodeAttempts extends CredentialsValidationSecurityCheck {
         return new PinCodeConfig(properties);
     }
     @Override
-    protected PinCodeConfig getConfig() {
-        return (PinCodeConfig) super.getConfig();
+    protected PinCodeConfig getConfiguration() {
+        return (PinCodeConfig) super.getConfiguration();
     }
 
     /**
@@ -47,12 +47,12 @@ public class PinCodeAttempts extends CredentialsValidationSecurityCheck {
         if(credentials!=null && credentials.containsKey(PINCODE_FIELD)){
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
-            if(pinCode.equals(getConfig().pinCode)){
+            if(pinCode.equals(getConfiguration().pinCode)){
                 errorMsg = null;
                 return true;
             }
             else {
-                errorMsg = "Pin code is not valid. Hint: " + getConfig().pinCode;
+                errorMsg = "Pin code is not valid. Hint: " + getConfiguration().pinCode;
             }
 
         }

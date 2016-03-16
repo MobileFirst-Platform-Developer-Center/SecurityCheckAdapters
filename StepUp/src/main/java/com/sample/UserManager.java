@@ -16,20 +16,25 @@
 package com.sample;
 
 import java.util.HashMap;
-import com.sample.User;
 
+/**
+ * This class hardcodes a list of valid users.
+ * Replace this with your own implementation, such as a DataBase layer.
+ */
 public class UserManager {
     public HashMap users;
 
     public UserManager(){
         users = new HashMap();
-        users.put("john", new User("john", "John Doe", "john123", "1234"));
-        users.put("tommy", new User("tommy", "Tommy Atkins", "tommy234", "2345"));
-        users.put("fred", new User("fred", "Fred Bloggs", "fred123", "3456"));
-        users.put("ola", new User("ola", "Ola Nordmann", "ola123", "4567"));
+
+        //The User constructors sets User(displayName, id, password, pinCode)
+        users.put("john", new User("John Doe", "john", "john123", "1234"));
+        users.put("tommy", new User("Tommy Atkins", "tommy", "tommy234", "2345"));
+        users.put("fred", new User("Fred Bloggs", "fred", "fred123", "3456"));
+        users.put("ola", new User("Ola Nordmann", "ola", "ola123", "4567"));
     }
 
-    public User getUser(String username){
-        return (User) users.get(username);
+    public User getUser(String id){
+        return (User) users.get(id);
     }
 }

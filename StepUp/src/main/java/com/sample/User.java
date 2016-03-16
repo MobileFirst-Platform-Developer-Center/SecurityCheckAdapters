@@ -16,16 +16,16 @@
 package com.sample;
 
 public class User {
-    public String name;
     public String displayName;
+    public String id;
     public String password;
-    public String pincode;
+    public String pinCode;
 
-    public User(String name, String displayName, String password, String pincode){
-        this.name = name;
+    public User(String displayName, String id, String password, String pinCode){
+        this.id = id;
         this.displayName = displayName;
         this.password = password;
-        this.pincode = pincode;
+        this.pinCode = pinCode;
     }
 
     public String getDisplayName() {
@@ -36,12 +36,12 @@ public class User {
         this.displayName = name;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -52,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public String getPincode() {
-        return pincode;
+    public String getPinCode() {
+        return pinCode;
     }
 
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
     }
 }

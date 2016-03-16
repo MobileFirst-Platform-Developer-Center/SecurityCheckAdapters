@@ -30,11 +30,13 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
     public static final String PINCODE_FIELD = "pin";
     private static UserManager userManager = new UserManager();
 
+    //Get a reference of the StepUpUserLogin security check
     @SecurityCheckReference
     private transient StepUpUserLogin userLogin;
 
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
+        //Process this security check ONLY if StepUpUserLogin was successful
         if(userLogin.getState().equals(STATE_SUCCESS)){
             super.authorize(scope, credentials, request, response);
         }
@@ -42,17 +44,18 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
+        //Get the correct PIN code from the database
         User user = userManager.getUser(userLogin.getUser().getId());
 
         if(credentials!=null && credentials.containsKey(PINCODE_FIELD)){
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
-            if(pinCode.equals(user.getPincode())){
+            if(pinCode.equals(user.getPinCode())){
                 errorMsg = null;
                 return true;
             }
             else{
-                errorMsg = "Wrong credentials. Hint: " + user.getPincode();
+                errorMsg = "Wrong credentials. Hint: " + user.getPinCode();
             }
         }
         return false;

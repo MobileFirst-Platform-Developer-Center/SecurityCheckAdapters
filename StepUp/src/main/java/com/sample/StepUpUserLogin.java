@@ -17,17 +17,13 @@ package com.sample;
 
 import com.ibm.mfp.security.checks.base.UserAuthenticationSecurityCheck;
 import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
-import com.ibm.mfp.server.registration.external.model.ClientData;
-import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
-import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 
-import javax.ws.rs.core.Context;
 import java.util.HashMap;
 import java.util.Map;
 
 public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
 
-    private String userId, displayName, pinCode;
+    private String userId, displayName;
     private String errorMsg;
     private static UserManager userManager = new UserManager();
 
@@ -36,29 +32,36 @@ public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
         return new AuthenticatedUser(userId, displayName, this.getName());
     }
 
+    /**
+     * Get the currently authenticated user
+     * @return AuthenticatedUser
+     */
+    public AuthenticatedUser getUser(){
+        return authorizationContext.getActiveUser();
+    }
+
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
-        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
             String username = credentials.get("username").toString();
             String password = credentials.get("password").toString();
+
+            //Look for this user in the database
             User user = userManager.getUser(username);
 
             if(user != null){
                 if(user.getPassword().equals(password)){
                     userId = username;
                     displayName = user.getDisplayName();
-                    pinCode = user.getPincode();
-                    attributes.put(StepUpPinCode.PINCODE_FIELD, pinCode);
                     errorMsg = null;
                     return true;
                 }
                 else {
-                    errorMsg = "Wrong Credentials";
+                    errorMsg = "Wrong Credentials. Hint: " + user.getPassword();
                 }
             }
             else {
-                errorMsg = "User not found!";
+                errorMsg = "User not found! Maybe try 'john'?";
             }
         }
         else{

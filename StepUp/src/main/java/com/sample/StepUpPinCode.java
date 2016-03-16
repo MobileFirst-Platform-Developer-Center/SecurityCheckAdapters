@@ -16,25 +16,19 @@
 package com.sample;
 
 import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheck;
-import com.ibm.mfp.security.checks.base.CredentialsValidationSecurityCheckConfig;
-import com.ibm.mfp.server.registration.external.model.ClientData;
-import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
-import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckReference;
-import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     private transient String errorMsg = null;
     public static final String PINCODE_FIELD = "pin";
+    private static UserManager userManager = new UserManager();
 
     @SecurityCheckReference
     private transient StepUpUserLogin userLogin;
@@ -48,17 +42,17 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
-        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
+        User user = userManager.getUser(userLogin.getUser().getId());
 
         if(credentials!=null && credentials.containsKey(PINCODE_FIELD)){
             String pinCode = credentials.get(PINCODE_FIELD).toString();
 
-            if(pinCode.equals(attributes.get(PINCODE_FIELD))){
+            if(pinCode.equals(user.getPincode())){
                 errorMsg = null;
                 return true;
             }
             else{
-                errorMsg = "Wrong credentials. Hint: " + attributes.get(PINCODE_FIELD);
+                errorMsg = "Wrong credentials. Hint: " + user.getPincode();
             }
         }
         return false;

@@ -36,8 +36,8 @@ public class StepUpPinCode extends CredentialsValidationSecurityCheck {
 
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
-        //Process this security check ONLY if StepUpUserLogin was successful
-        if(userLogin.getState().equals(STATE_SUCCESS)){
+        if(userLogin.isLoggedIn()){
+            //If StepUpUserLogin is successful, continue the normal processing of StepUpPinCode
             super.authorize(scope, credentials, request, response);
         }
     }

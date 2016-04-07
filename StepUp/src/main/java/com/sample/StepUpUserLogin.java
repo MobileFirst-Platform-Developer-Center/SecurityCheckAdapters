@@ -40,6 +40,10 @@ public class StepUpUserLogin extends UserAuthenticationSecurityCheck {
         return authorizationContext.getActiveUser();
     }
 
+    public boolean isLoggedIn(){
+        return this.getState().equals(STATE_SUCCESS);
+    }
+
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){

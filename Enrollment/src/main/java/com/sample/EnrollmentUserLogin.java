@@ -31,17 +31,18 @@ public class EnrollmentUserLogin extends UserAuthenticationSecurityCheck{
 
     protected boolean validateCredentials(Map<String, Object> credentials) {
         if(credentials!=null && credentials.containsKey("username") && credentials.containsKey("password")){
-            String username = credentials.get("username").toString();
-            String password = credentials.get("password").toString();
-            if(!username.isEmpty() && !password.isEmpty() && username.equals(password)) {
-                userId = username;
-                displayName = username;
+            if (credentials.get("username")!=null && credentials.get("password")!=null) {
+                String username = credentials.get("username").toString();
+                String password = credentials.get("password").toString();
+                if (username.equals(password)) {
+                    userId = username;
+                    displayName = username;
 
-                errorMsg = null;
-                return true;
-            }
-            else {
-                errorMsg = "Wrong Credentials";
+                    errorMsg = null;
+                    return true;
+                } else {
+                    errorMsg = "Wrong Credentials";
+                }
             }
         }
         else{
@@ -60,4 +61,5 @@ public class EnrollmentUserLogin extends UserAuthenticationSecurityCheck{
         challenge.put("remainingAttempts", getRemainingAttempts());
         return challenge;
     }
+
 }

@@ -19,30 +19,30 @@ package com.sample;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.checks.AuthorizationResponse;
 import com.ibm.mfp.server.security.external.checks.IntrospectionResponse;
+import com.ibm.mfp.server.security.external.checks.SecurityCheckConfiguration;
 import com.ibm.mfp.server.security.external.checks.SecurityCheckReference;
 import com.ibm.mfp.server.security.external.checks.impl.ExternalizableSecurityCheck;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 public class IsEnrolled  extends ExternalizableSecurityCheck{
     private static final String SUCCESS_STATE = "success";
-    private static final int DEFAULT_SCOPE_TIMEOUT = 8000;
 
     @SecurityCheckReference
     private transient EnrollmentUserLogin userLogin;
-
-    private PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
+    private static final int DEFAULT_SCOPE_TIMEOUT = 8000;
 
     @Override
     protected void initStateDurations(Map<String, Integer> durations) {
         durations.put (SUCCESS_STATE, (DEFAULT_SCOPE_TIMEOUT));
     }
 
-    @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
+        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if (attributes.get("pinCode")){
             setState(SUCCESS_STATE);
             response.addSuccess(scope, getExpiresAt(), this.getName());
@@ -57,7 +57,6 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
         }
     }
 
-    @Override
     public void introspect(Set<String> checkScope, IntrospectionResponse response) {
         if (getState().equals(SUCCESS_STATE)) {
             response.addIntrospectionData(getName(),checkScope,getExpiresAt(),null);

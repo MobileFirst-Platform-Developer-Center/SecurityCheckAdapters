@@ -31,8 +31,6 @@ public class EnrollmentPinCode extends CredentialsValidationSecurityCheck {
     @SecurityCheckReference
     private transient EnrollmentUserLogin userLogin;
 
-    private PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
-
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
         if (userLogin.isExpired()){
@@ -44,6 +42,7 @@ public class EnrollmentPinCode extends CredentialsValidationSecurityCheck {
 
     @Override
     protected boolean validateCredentials(Map<String, Object> credentials) {
+        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if(credentials!=null && credentials.containsKey("pin")){
             String pinCode = credentials.get("pin").toString();
 

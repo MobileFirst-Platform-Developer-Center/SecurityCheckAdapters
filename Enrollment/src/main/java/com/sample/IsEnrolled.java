@@ -43,7 +43,7 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
 
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
         PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
-        if (attributes.get("pinCode")){
+        if (attributes.get("pinCode") != null){
             setState(SUCCESS_STATE);
             response.addSuccess(scope, getExpiresAt(), this.getName());
         } else  {

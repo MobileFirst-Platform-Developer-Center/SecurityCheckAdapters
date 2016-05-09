@@ -23,17 +23,17 @@ import com.ibm.mfp.adapter.api.MFPJAXRSApplication;
 public class EnrollmentApplication extends MFPJAXRSApplication{
 
 	static Logger logger = Logger.getLogger(EnrollmentApplication.class.getName());
-	
+
 
 	protected void init() throws Exception {
 		logger.info("Adapter initialized!");
 	}
-	
+
 
 	protected void destroy() throws Exception {
 		logger.info("Adapter destroyed!");
 	}
-	
+
 
 	protected String getPackageToScan() {
 		//The package of this class will be scanned (recursively) to find JAX-RS resources. 

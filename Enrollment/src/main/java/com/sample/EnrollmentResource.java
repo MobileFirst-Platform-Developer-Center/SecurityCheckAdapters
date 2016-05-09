@@ -16,13 +16,23 @@
 
 package com.sample;
 
+import com.ibm.mfp.adapter.api.OAuthSecurity;
 import com.ibm.mfp.server.registration.external.model.ClientData;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 
 @Path("/")
@@ -30,9 +40,6 @@ public class EnrollmentResource {
 
 	@Context
 	AdapterSecurityContext adapterSecurityContext;
-
-	private ClientData clientData = adapterSecurityContext.getClientRegistrationData();
-	private PersistentAttributes attributes = clientData.getProtectedAttributes();
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -43,6 +50,7 @@ public class EnrollmentResource {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
+	@OAuthSecurity(scope = "accessRestricted")
 	@Path("/balance")
 	public String getBalance(){
 		return "19938.80";
@@ -50,6 +58,7 @@ public class EnrollmentResource {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
+	@OAuthSecurity(scope = "transactionsPrivilege")
 	@Path("/transactions")
 	public String getTransactions(){
 		return "transactions"; ////// ???
@@ -58,14 +67,23 @@ public class EnrollmentResource {
 	@GET
 	@Path("/isEnrolled")
 	public boolean isEnrolled(){
-		return attributes.get("pinCode");
+//		Map<String, Object> response = new HashMap<String, Object>();
+//		boolean isEnrolled = getAttributes().get("pinCode") != null;
+//		response.put("isEnrolled", isEnrolled);
+		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
+		return clientData.getProtectedAttributes().get("pinCode") != null;
 	}
 
 	@POST
+	@OAuthSecurity(scope = "setPinCode")
 	@Path("/setPinCode/{pinCode}")
-	public void setPinCode(@PathParam("pinCode") String pinCode){
-		attributes.put("pinCode", pinCode);
+	public Response setPinCode(@PathParam("pinCode") String pinCode){
+		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
+		clientData.getProtectedAttributes().put("pinCode", pinCode);
+		adapterSecurityContext.storeClientRegistrationData(clientData);
+		return Response.ok().build();
 	}
+
 
 
 

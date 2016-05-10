@@ -33,10 +33,14 @@ public class EnrollmentPinCode extends CredentialsValidationSecurityCheck {
 
     @Override
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
-        if (userLogin.isExpired()){
-            super.authorize(scope, credentials, request, response);
+        PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
+        if (userLogin.isLoggedIn()){
+            response.addSuccess(scope, getExpiresAt(), getName());
         } else {
-            response.addSuccess(scope, userLogin.getExpiresAt(), getName());
+            super.authorize(scope, credentials, request, response);
+            if (getState().equals(STATE_BLOCKED)){
+                attributes.delete("pinCode");
+            }
         }
     }
 

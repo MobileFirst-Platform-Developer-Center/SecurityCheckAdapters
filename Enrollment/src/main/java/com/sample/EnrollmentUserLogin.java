@@ -51,8 +51,8 @@ public class EnrollmentUserLogin extends UserAuthenticationSecurityCheck{
         return false;
     }
 
-    public boolean isExpired(){
-        return getState().equals(STATE_EXPIRED);
+    public boolean isLoggedIn(){
+        return getState().equals(STATE_SUCCESS);
     }
 
     protected Map<String, Object> createChallenge() {

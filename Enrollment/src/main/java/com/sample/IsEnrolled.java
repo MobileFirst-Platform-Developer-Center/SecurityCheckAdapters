@@ -32,8 +32,8 @@ import java.util.Set;
 public class IsEnrolled  extends ExternalizableSecurityCheck{
     private static final String SUCCESS_STATE = "success";
 
-    @SecurityCheckReference
-    private transient EnrollmentUserLogin userLogin;
+//    @SecurityCheckReference
+//    private transient EnrollmentUserLogin userLogin;
     private static final int DEFAULT_SCOPE_TIMEOUT = 8000;
 
     @Override

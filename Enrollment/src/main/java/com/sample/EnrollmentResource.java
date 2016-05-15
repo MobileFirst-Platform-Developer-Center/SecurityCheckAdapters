@@ -25,11 +25,7 @@ import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -45,7 +41,7 @@ public class EnrollmentResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/publicData")
 	public String getPublicData(){
-		return "some data"; ////// ???
+		return "Lorem ipsum dolor sit amet, modo oratio cu nam, mei graece dicunt tamquam ne.";
 	}
 
 	@GET
@@ -61,7 +57,7 @@ public class EnrollmentResource {
 	@OAuthSecurity(scope = "transactionsPrivilege")
 	@Path("/transactions")
 	public String getTransactions(){
-		return "transactions"; ////// ???
+		return "{'date':'12/01/2016', 'amount':'19938.80'}";
 	}
 
 	@GET
@@ -81,6 +77,17 @@ public class EnrollmentResource {
 		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
 		clientData.getProtectedAttributes().put("pinCode", pinCode);
 		adapterSecurityContext.storeClientRegistrationData(clientData);
+		return Response.ok().build();
+	}
+
+	@DELETE
+	@Path("/deletePinCode")
+	public Response deletePinCode(){
+		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
+		if (clientData.getProtectedAttributes().get("pinCode") != null){
+			clientData.getProtectedAttributes().delete("pinCode");
+			adapterSecurityContext.storeClientRegistrationData(clientData);
+		}
 		return Response.ok().build();
 	}
 

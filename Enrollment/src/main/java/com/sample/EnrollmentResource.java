@@ -21,10 +21,6 @@ import com.ibm.mfp.server.registration.external.model.ClientData;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -63,11 +59,8 @@ public class EnrollmentResource {
 	@GET
 	@Path("/isEnrolled")
 	public boolean isEnrolled(){
-//		Map<String, Object> response = new HashMap<String, Object>();
-//		boolean isEnrolled = getAttributes().get("pinCode") != null;
-//		response.put("isEnrolled", isEnrolled);
-		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
-		return clientData.getProtectedAttributes().get("pinCode") != null;
+		PersistentAttributes protectedAttributes = adapterSecurityContext.getClientRegistrationData().getProtectedAttributes();
+		return (protectedAttributes.get("pinCode") != null);
 	}
 
 	@POST

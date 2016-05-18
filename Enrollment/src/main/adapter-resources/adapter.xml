@@ -24,12 +24,12 @@ limitations under the License.
 	<JAXRSApplicationClass>com.sample.EnrollmentApplication</JAXRSApplicationClass>
 
 	<securityCheckDefinition name="EnrollmentUserLogin" class="com.sample.EnrollmentUserLogin">
-		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)"/>
+		<property name="successStateExpirationSec" defaultValue="200" description="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 
 	<securityCheckDefinition name="EnrollmentPinCode" class="com.sample.EnrollmentPinCode">
 		<property name="maxAttempts" defaultValue="3" description="How many attempts are allowed"/>
-		<property name="successStateExpirationSec" defaultValue="60" description="How long is a successful state valid for (seconds)" type="integer"/>
+		<property name="successStateExpirationSec" defaultValue="10" description="How long is a successful state valid for (seconds)" type="integer"/>
 		<property name="blockedStateExpirationSec" defaultValue="1" description="How long before the client can try again (seconds)" type="integer"/>
 	</securityCheckDefinition>
 

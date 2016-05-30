@@ -34,11 +34,16 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
 
 //    @SecurityCheckReference
 //    private transient EnrollmentUserLogin userLogin;
-    private static final int DEFAULT_SCOPE_TIMEOUT = 8000;
+    //private static final int DEFAULT_SCOPE_TIMEOUT = 8000;
+
+    @Override
+    public SecurityCheckConfiguration createConfiguration(Properties properties) {
+        return new IsEnrolledConfig(properties);
+    }
 
     @Override
     protected void initStateDurations(Map<String, Integer> durations) {
-        durations.put (SUCCESS_STATE, (DEFAULT_SCOPE_TIMEOUT));
+        durations.put (SUCCESS_STATE, ((IsEnrolledConfig) config).successStateExpirationSec);
     }
 
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
@@ -48,11 +53,8 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
             response.addSuccess(scope, getExpiresAt(), this.getName());
         } else  {
             setState(STATE_EXPIRED);
-            Map <String, Object> failure = new HashMap<String, Object>()
-            {{
-                put("failure", "User is not enrolled");
-
-            }};
+            Map <String, Object> failure = new HashMap<String, Object>();
+            failure.put("failure", "User is not enrolled");
             response.addFailure(getName(), failure);
         }
     }

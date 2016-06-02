@@ -25,6 +25,6 @@ public class IsEnrolledConfig extends ExternalizableSecurityCheckConfig {
 
     public IsEnrolledConfig(Properties properties) {
         super(properties);
-        successStateExpirationSec = getIntProperty("expirationInSec", properties, 8000);
+        successStateExpirationSec = getIntProperty("successStateExpirationSec", properties, 8000);
     }
 }

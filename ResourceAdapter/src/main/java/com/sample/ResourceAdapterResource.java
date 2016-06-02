@@ -17,10 +17,9 @@ package com.sample;
 
 import com.ibm.mfp.adapter.api.OAuthSecurity;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/")
 public class ResourceAdapterResource {
@@ -34,5 +33,11 @@ public class ResourceAdapterResource {
 		return "19938.80";
 	}
 
+	@POST
+	@Path("/transfer")
+	@OAuthSecurity(scope="transferPrivilege") //This method is protected. Each application can define what "transferPrivilege" means.
+	public Response transfer(@FormParam("amount") float amount){
+		return Response.ok().build();
+	}
 
 }

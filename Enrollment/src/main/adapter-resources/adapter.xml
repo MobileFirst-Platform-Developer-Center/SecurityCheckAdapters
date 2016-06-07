@@ -34,7 +34,6 @@ limitations under the License.
 	</securityCheckDefinition>
 
 	<securityCheckDefinition name="IsEnrolled" class="com.sample.IsEnrolled">
-		<property name="inactivityTimeoutSec" defaultValue="0"/>
 		<property name="successStateExpirationSec" defaultValue="8000" description="How long is a successful state valid for (seconds)"/>
 	</securityCheckDefinition>
 

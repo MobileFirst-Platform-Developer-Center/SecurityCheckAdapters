@@ -34,29 +34,6 @@ public class EnrollmentResource {
 	AdapterSecurityContext adapterSecurityContext;
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/publicData")
-	public String getPublicData(){
-		return "Lorem ipsum dolor sit amet, modo oratio cu nam, mei graece dicunt tamquam ne.";
-	}
-
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@OAuthSecurity(scope = "accessRestricted")
-	@Path("/balance")
-	public String getBalance(){
-		return "19938.80";
-	}
-
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@OAuthSecurity(scope = "transactionsPrivilege")
-	@Path("/transactions")
-	public String getTransactions(){
-		return "{'date':'12/01/2016', 'amount':'19938.80'}";
-	}
-
-	@GET
 	@Path("/isEnrolled")
 	public boolean isEnrolled(){
 		PersistentAttributes protectedAttributes = adapterSecurityContext.getClientRegistrationData().getProtectedAttributes();
@@ -83,9 +60,4 @@ public class EnrollmentResource {
 		}
 		return Response.ok().build();
 	}
-
-
-
-
-
 }

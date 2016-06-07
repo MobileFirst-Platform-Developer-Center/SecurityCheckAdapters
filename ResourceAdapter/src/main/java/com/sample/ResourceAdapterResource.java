@@ -40,4 +40,19 @@ public class ResourceAdapterResource {
 		return Response.ok().build();
 	}
 
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/publicData")
+	@OAuthSecurity(enabled=false)
+	public String getPublicData(){
+		return "Lorem ipsum dolor sit amet, modo oratio cu nam, mei graece dicunt tamquam ne.";
+	}
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@OAuthSecurity(scope = "transactions")
+	@Path("/transactions")
+	public String getTransactions(){
+		return "{'date':'12/01/2016', 'amount':'19938.80'}";
+	}
 }

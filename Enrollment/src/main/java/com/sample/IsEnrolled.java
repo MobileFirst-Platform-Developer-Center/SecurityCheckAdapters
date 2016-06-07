@@ -34,7 +34,6 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
 
 //    @SecurityCheckReference
 //    private transient EnrollmentUserLogin userLogin;
-    //private static final int DEFAULT_SCOPE_TIMEOUT = 8000;
 
     @Override
     public SecurityCheckConfiguration createConfiguration(Properties properties) {

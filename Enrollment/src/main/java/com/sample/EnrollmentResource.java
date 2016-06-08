@@ -17,6 +17,7 @@
 package com.sample;
 
 import com.ibm.mfp.adapter.api.OAuthSecurity;
+import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
 import com.ibm.mfp.server.registration.external.model.ClientData;
 import com.ibm.mfp.server.registration.external.model.PersistentAttributes;
 import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
@@ -25,6 +26,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Path("/")
@@ -41,18 +44,26 @@ public class EnrollmentResource {
 	}
 
 	@POST
+	@Produces("application/json")
 	@OAuthSecurity(scope = "setPinCode")
 	@Path("/setPinCode/{pinCode}")
 	public Response setPinCode(@PathParam("pinCode") String pinCode){
 		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
 		clientData.getProtectedAttributes().put("pinCode", pinCode);
 		adapterSecurityContext.storeClientRegistrationData(clientData);
-		return Response.ok().build();
+		AuthenticatedUser authenticatedUser = null;
+		if (clientData.getUsers() != null) {
+			authenticatedUser = clientData.getUsers().get("EnrollmentUserLogin");
+		}
+		Map<String, Object> user = new HashMap<String, Object>();
+		user.put("userName", authenticatedUser.getDisplayName());
+		return Response.ok(user).build();
 	}
 
 	@DELETE
-	@Path("/deletePinCode")
-	public Response deletePinCode(){
+	@OAuthSecurity(scope = "unenroll")
+	@Path("/unenroll")
+	public Response unenroll(){
 		ClientData clientData = adapterSecurityContext.getClientRegistrationData();
 		if (clientData.getProtectedAttributes().get("pinCode") != null){
 			clientData.getProtectedAttributes().delete("pinCode");

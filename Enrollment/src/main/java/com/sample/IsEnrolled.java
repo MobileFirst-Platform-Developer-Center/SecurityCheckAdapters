@@ -32,9 +32,6 @@ import java.util.Set;
 public class IsEnrolled  extends ExternalizableSecurityCheck{
     private static final String SUCCESS_STATE = "success";
 
-//    @SecurityCheckReference
-//    private transient EnrollmentUserLogin userLogin;
-
     @Override
     public SecurityCheckConfiguration createConfiguration(Properties properties) {
         return new IsEnrolledConfig(properties);

@@ -22,11 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EnrollmentUserLogin extends UserAuthenticationSecurityCheck{
-    private String userId, displayName;
+    private String displayName;
     private String errorMsg;
 
     protected AuthenticatedUser createUser() {
-        return new AuthenticatedUser(userId, displayName, this.getName());
+        return new AuthenticatedUser(displayName, displayName, this.getName());
     }
 
     protected boolean validateCredentials(Map<String, Object> credentials) {
@@ -35,7 +35,6 @@ public class EnrollmentUserLogin extends UserAuthenticationSecurityCheck{
                 String username = credentials.get("username").toString();
                 String password = credentials.get("password").toString();
                 if (username.equals(password)) {
-                    userId = username;
                     displayName = username;
 
                     errorMsg = null;

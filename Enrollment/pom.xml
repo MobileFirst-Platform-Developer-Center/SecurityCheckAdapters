@@ -29,6 +29,9 @@
 	</dependencies>
 
 	<properties>
+		<!-- Use UTF-8 as the encoding of the adapter -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<!-- MobileFirst adapter deployment properties -->
 		<mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
 		<mfpfUser>admin</mfpfUser>

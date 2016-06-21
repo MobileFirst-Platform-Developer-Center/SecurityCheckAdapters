@@ -16,13 +16,19 @@
 package com.sample;
 
 import com.ibm.mfp.adapter.api.OAuthSecurity;
+import com.ibm.mfp.server.registration.external.model.AuthenticatedUser;
+import com.ibm.mfp.server.security.external.resource.AdapterSecurityContext;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
 public class ResourceAdapterResource {
+
+	@Context
+	AdapterSecurityContext securityContext;
 
 	/* Path for method: "<server address>/mfp/api/adapters/ResourceAdapter" */
 	@GET
@@ -53,6 +59,7 @@ public class ResourceAdapterResource {
 	@OAuthSecurity(scope = "transactions")
 	@Path("/transactions")
 	public String getTransactions(){
-		return "{'date':'12/01/2016', 'amount':'19938.80'}";
+		AuthenticatedUser currentUser = securityContext.getAuthenticatedUser();
+		return "Transactions for " + currentUser.getDisplayName() + ":\n{'date':'12/01/2016', 'amount':'19938.80'}";
 	}
 }

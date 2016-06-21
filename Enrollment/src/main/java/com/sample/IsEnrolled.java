@@ -32,6 +32,9 @@ import java.util.Set;
 public class IsEnrolled  extends ExternalizableSecurityCheck{
     private static final String SUCCESS_STATE = "success";
 
+    @SecurityCheckReference
+    private transient EnrollmentUserLogin userLogin;
+
     @Override
     public SecurityCheckConfiguration createConfiguration(Properties properties) {
         return new IsEnrolledConfig(properties);
@@ -45,8 +48,11 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
         PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if (attributes.get("pinCode") != null){
+            if (!userLogin.isLoggedIn()){
+                authorizationContext.setActiveUser(userLogin.getRegisteredUser());
+            }
             setState(SUCCESS_STATE);
-            response.addSuccess(scope, getExpiresAt(), this.getName());
+            response.addSuccess(scope, getExpiresAt(), getName(), "user", userLogin.getRegisteredUser());
         } else  {
             setState(STATE_EXPIRED);
             Map <String, Object> failure = new HashMap<String, Object>();

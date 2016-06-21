@@ -54,6 +54,10 @@ public class EnrollmentUserLogin extends UserAuthenticationSecurityCheck{
         return getState().equals(STATE_SUCCESS);
     }
 
+    public AuthenticatedUser getRegisteredUser() {
+        return registrationContext.getRegisteredUser();
+    }
+
     protected Map<String, Object> createChallenge() {
         Map<String, Object> challenge = new HashMap<String, Object>();
         challenge.put("errorMsg", errorMsg);

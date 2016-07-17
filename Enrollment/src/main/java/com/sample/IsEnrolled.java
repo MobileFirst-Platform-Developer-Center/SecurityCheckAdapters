@@ -48,7 +48,9 @@ public class IsEnrolled  extends ExternalizableSecurityCheck{
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
         PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if (attributes.get("pinCode") != null){
+            // Is there a user currently active?
             if (!userLogin.isLoggedIn()){
+                // If not, set one here.
                 authorizationContext.setActiveUser(userLogin.getRegisteredUser());
             }
             setState(SUCCESS_STATE);

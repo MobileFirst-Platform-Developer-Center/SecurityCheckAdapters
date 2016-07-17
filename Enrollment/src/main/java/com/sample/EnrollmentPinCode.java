@@ -35,10 +35,7 @@ public class EnrollmentPinCode extends CredentialsValidationSecurityCheck {
     public void authorize(Set<String> scope, Map<String, Object> credentials, HttpServletRequest request, AuthorizationResponse response) {
         PersistentAttributes attributes = registrationContext.getRegisteredProtectedAttributes();
         if (userLogin.isLoggedIn()){
-            if (getState() != STATE_SUCCESS) {
-                setState(STATE_SUCCESS);
-            }
-            //setState(STATE_SUCCESS);
+            setState(STATE_SUCCESS);
             response.addSuccess(scope, userLogin.getExpiresAt(), getName());
         } else {
             super.authorize(scope, credentials, request, response);

@@ -26,6 +26,7 @@ limitations under the License.
     <module>UserLogin</module>
     <module>StepUp</module>
 		<module>Enrollment</module>
+    <module>JSResourceAdapter</module>
   </modules>
 
 	<properties>
